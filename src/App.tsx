@@ -2,8 +2,8 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Col, Row, Button, Stack } from 'react-bootstrap'
 import { useStore } from '@/hooks/useStore'
-import { AUTO_LANGUAGE } from '@/constants'
-import { ArrowIcon, CopyIcon } from '@/components/Icons'
+import { AUTO_LANGUAGE, SPEECH_LANGUAGES } from '@/constants'
+import { ArrowIcon, CopyIcon, SpeakerIcon } from '@/components/Icons'
 import { LanguageSelector } from '@/components/LanguageSelector'
 import { SectionType } from '@/types.d'
 import { TextArea } from '@/components/TextArea'
@@ -25,7 +25,7 @@ function App() {
     loading
   } = useStore()
 
-  const debounceFromText = useDebounce(fromText)
+  const debounceFromText: string = useDebounce(fromText)
 
   useEffect(() => {
     if (debounceFromText === '') return
@@ -39,6 +39,13 @@ function App() {
 
   const handleClipboard = () => {
     navigator.clipboard.writeText(result).catch(() => {})
+  }
+
+  const handleSpeaker = () => {
+    const utterance = new SpeechSynthesisUtterance(result)
+    utterance.lang = SPEECH_LANGUAGES[toLanguage]
+    utterance.rate = 0.8
+    speechSynthesis.speak(utterance)
   }
 
   return (
@@ -81,13 +88,21 @@ function App() {
                 onChange={setResult}
                 loading={loading}
                 />
+                <div style={{ position: 'absolute', left: 0, bottom: 0, display: 'flex' }}>
                 <Button
                   variant='link'
-                  style={{ position: 'absolute', left: 0, bottom: 0 }}
                   onClick={handleClipboard}
                 >
                   <CopyIcon />
                 </Button>
+                <Button
+                  variant='link'
+                  onClick={handleSpeaker}
+                >
+                  <SpeakerIcon />
+                </Button>
+                </div>
+
           </div>
             </Stack>
         </Col>
