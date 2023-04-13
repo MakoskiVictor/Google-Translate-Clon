@@ -2,7 +2,7 @@ import { type AUTO_LANGUAGE, type SUPPORTED_LANGUAGES } from '@/constants'
 
 export interface State {
   fromLanguage: FromLanguage
-  toLanguage: string
+  toLanguage: Language
   fromText: string
   result: string
   loading: boolean
