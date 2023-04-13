@@ -12,4 +12,4 @@ export const SPEECH_LANGUAGES = {
   de: 'de-DE'
 }
 
-export const API_URL = 'https://googletranslateapi.onrender.com/'
+export const API_URL = 'https://googletranslateapi.onrender.com'
