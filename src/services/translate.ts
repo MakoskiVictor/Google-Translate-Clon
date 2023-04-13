@@ -1,10 +1,10 @@
 import { type FromLanguage, type Language } from '@/types'
-/* import { API_URL } from '@/constants' */
+import { API_URL } from '@/constants'
 
 export async function translate ({ fromLanguage, toLanguage, text }:
 { fromLanguage: FromLanguage, toLanguage: Language, text: string }): Promise<string> {
   try {
-    const translation = await fetch('http://localhost:3000/translate', {
+    const translation = await fetch(`${API_URL}/translate`, {
       method: 'POST',
       body: JSON.stringify({ fromLanguage, toLanguage, text }),
       headers: {
