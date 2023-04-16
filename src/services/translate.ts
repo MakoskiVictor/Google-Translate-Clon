@@ -13,7 +13,7 @@ export async function translate ({ fromLanguage, toLanguage, text }:
     })
 
     const result = translation.json()
-
+    console.log(result, '/////////////////////////////////////', translation)
     return await result
   } catch (error) {
     console.error('Error:', error)
