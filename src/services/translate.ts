@@ -6,6 +6,8 @@ export async function translate ({ fromLanguage, toLanguage, text }:
   try {
     const translation = await fetch(`${API_URL}/translate`, {
       method: 'POST',
+      mode: 'cors',
+      credentials: 'same-origin',
       body: JSON.stringify({ fromLanguage, toLanguage, text }),
       headers: {
         'Content-Type': 'application/json'
