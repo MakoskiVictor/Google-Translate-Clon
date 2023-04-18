@@ -50,7 +50,7 @@ function App() {
 
   return (
     <Container fluid>
-      <h2>Google Translate</h2>
+      <h2 className='title' >Google Translate</h2>
 
       <Row>
         <Col>
